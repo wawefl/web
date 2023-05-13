@@ -2,12 +2,36 @@
   <div>Information</div>
   <div>
     <mat-form-field class="example-full-width">
-      <mat-label>Password</mat-label>
-      <input
-        matInput
-        placeholder="Ex. Pizza"
-        [(ngModel)]="formSchool.password"
-      />
+      <mat-label>Name</mat-label>
+      <input matInput placeholder="Ex. Next U" [(ngModel)]="formSchool.name" />
     </mat-form-field>
+
+    <div>Social Network</div>
+    <div *ngFor="let social of formSchool.socialNetworks">
+      <div class="flex">
+        <mat-form-field class="example-full-width">
+          <mat-label>Name Social Network</mat-label>
+          <input matInput placeholder="Ex. Twitter" [(ngModel)]="social.name" />
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-label>URL Social Network</mat-label>
+          <input
+            matInput
+            placeholder="Ex. https://twitter.com/next-u"
+            [(ngModel)]="social.url"
+          />
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div>
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="createOrUpdateSchool()"
+      >
+        Create
+      </button>
+    </div>
   </div>
 </div>

@@ -4,6 +4,7 @@ import { AdministratorComponent } from './administrator/administrator.component'
 import { MainComponent } from './main/main.component';
 import { DashboardComponent } from './dashboard.component';
 import { AuthGuard } from '../auth/auth.guard';
+import { SchoolComponent } from './school/school.component';
 
 const routes: Routes = [
   {
@@ -11,8 +12,9 @@ const routes: Routes = [
     component: DashboardComponent,
     canActivateChild: [AuthGuard],
     children: [
-      { path: 'administrator', component: AdministratorComponent },
       { path: '', component: MainComponent },
+      { path: 'administrator', component: AdministratorComponent },
+      { path: 'school', component: SchoolComponent },
     ],
   },
 ];
