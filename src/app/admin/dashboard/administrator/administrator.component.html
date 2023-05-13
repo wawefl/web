@@ -1,0 +1,162 @@
+<div
+  *ngIf="
+    administrators !== null && administrators.length > 0;
+    then visible;
+    else hidden
+  "
+></div>
+
+<ng-template #visible>
+  <table
+    mat-table
+    [dataSource]="dataSource"
+    matSort
+    (matSortChange)="announceSortChange($event)"
+    class="mat-elevation-z8"
+  >
+    <ng-container matColumnDef="id">
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        mat-sort-header
+        sortActionDescription="Sort by id"
+      >
+        No.
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        mat-sort-header
+        sortActionDescription="Sort by name"
+      >
+        Name
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="email">
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        mat-sort-header
+        sortActionDescription="Sort by email"
+      >
+        Email
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.email }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="role">
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        mat-sort-header
+        sortActionDescription="Sort by role"
+      >
+        Role
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.role }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="modify">
+      <th mat-header-cell *matHeaderCellDef>
+        <mat-icon>edit</mat-icon>
+      </th>
+      <td mat-cell *matCellDef="let element">
+        <mat-icon class="cursor-pointer" (click)="modifyAdministrator(element)"
+          >edit</mat-icon
+        >
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+</ng-template>
+
+<ng-template #hidden>
+  <div>
+    <tr>
+      No results found.
+    </tr>
+  </div>
+</ng-template>
+
+<div class="div-button-add">
+  <button
+    mat-fab
+    color="primary"
+    aria-label="Example icon button with a delete icon"
+    (click)="addAdministrator()"
+  >
+    <mat-icon>add</mat-icon>
+  </button>
+</div>
+
+<ng-template #viewFormAdministrator>
+  <div>
+    <span *ngIf="formAdministrator.id; else createAdmin"
+      >Edit de l'admin : {{ formAdministrator.id }}</span
+    >
+    <ng-template #createAdmin><span>Create admin</span></ng-template>
+  </div>
+  <div class="grid grid-cols-2">
+    <!-- <mat-grid-tile> -->
+    <mat-form-field class="example-full-width">
+      <mat-label>First Name</mat-label>
+      <input
+        matInput
+        placeholder="Ex. Pizza"
+        [(ngModel)]="formAdministrator.firstName"
+      />
+    </mat-form-field>
+    <!-- </mat-grid-tile> -->
+
+    <!-- <mat-grid-tile> -->
+    <mat-form-field class="example-full-width">
+      <mat-label>Last Name</mat-label>
+      <input
+        matInput
+        placeholder="Ex. Pizza"
+        [(ngModel)]="formAdministrator.lastName"
+      />
+    </mat-form-field>
+    <!-- </mat-grid-tile> -->
+
+    <!-- <mat-grid-tile> -->
+    <mat-form-field class="example-full-width">
+      <mat-label>Email</mat-label>
+      <input
+        matInput
+        placeholder="Ex. Pizza"
+        [(ngModel)]="formAdministrator.email"
+      />
+    </mat-form-field>
+    <!-- </mat-grid-tile> -->
+
+    <!-- <mat-grid-tile> -->
+    <mat-form-field class="example-full-width">
+      <mat-label>Password</mat-label>
+      <input
+        matInput
+        placeholder="Ex. Pizza"
+        [(ngModel)]="formAdministrator.password"
+      />
+    </mat-form-field>
+    <!-- </mat-grid-tile> -->
+
+    <!-- <mat-grid-tile> -->
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="createOrUpdateAdministrator()"
+    >
+      Create
+    </button>
+    <!-- </mat-grid-tile> -->
+  </div>
+</ng-template>
