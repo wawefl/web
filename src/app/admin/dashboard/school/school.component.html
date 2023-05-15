@@ -25,12 +25,18 @@
     </div>
 
     <div>
+      <button mat-fab color="primary" (click)="addSocialNetwork()">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+
+    <div>
       <button
         mat-raised-button
         color="primary"
         (click)="createOrUpdateSchool()"
       >
-        Create
+        {{ formSchool.id !== null ? "Upgrade" : "Create" }}
       </button>
     </div>
   </div>

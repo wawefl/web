@@ -22,6 +22,8 @@ export class SchoolComponent implements OnInit {
     this.schoolService.get(1).subscribe(
       (school) => {
         if (school !== null) {
+          console.log(school);
+          this.formSchool.id = school.id;
           this.formSchool.name = school.name;
           this.formSchool.socialNetworks = school.socialNetworks;
           this.formSchool.openingHours = school.openingHours;
@@ -48,5 +50,9 @@ export class SchoolComponent implements OnInit {
         console.log(this.formSchool);
       });
     }
+  }
+
+  addSocialNetwork() {
+    this.formSchool.socialNetworks.push({ name: '', url: '' });
   }
 }

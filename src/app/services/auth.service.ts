@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+import { take } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -9,7 +11,7 @@ export class AuthService {
   backendUrl: string;
 
   currentUser: any | undefined = undefined;
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
     this.backendUrl = environment.backendUrl;
   }
 
@@ -47,5 +49,17 @@ export class AuthService {
         },
       })
     );
+  }
+
+  async logout() {
+    this.http
+      .post<any>(`${this.backendUrl}/api/auth/logout`, null)
+      .pipe(take(1))
+      .subscribe({
+        next: async () => {
+          this.router.navigateByUrl('login');
+        },
+        error: (error) => console.log(error),
+      });
   }
 }
