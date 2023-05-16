@@ -55,7 +55,13 @@
       >
         Grade
       </th>
-      <td mat-cell *matCellDef="let element">{{ element.gradeId }}</td>
+      <td mat-cell *matCellDef="let element">
+        <div *ngFor="let gradeDisplay of grades">
+          <div *ngIf="element.gradeId === gradeDisplay.id">
+            {{ gradeDisplay.name }} ({{ gradeDisplay.level }})
+          </div>
+        </div>
+      </td>
     </ng-container>
 
     <ng-container matColumnDef="modify">

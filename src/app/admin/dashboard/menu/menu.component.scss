@@ -1,4 +1,8 @@
-.bottom {
-  position: absolute;
-  bottom: 0;
+#menu {
+  padding: 25px 40px 25px 15px;
+  .bottom {
+    position: absolute;
+    bottom: 0;
+    right: 15px;
+  }
 }
