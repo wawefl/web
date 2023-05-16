@@ -6,12 +6,12 @@ import {
   ViewChild,
 } from '@angular/core';
 import { AdministratorService } from 'src/app/services/administrator.service';
-import { MatTableDataSource } from '@angular/material/table';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { MatSort, Sort } from '@angular/material/sort';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { CreateAdministratorDto } from 'src/app/dto/administrator.dto';
 import { ParseSourceFile } from '@angular/compiler';
+import { MatDialog } from '@angular/material/dialog';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-administrator',

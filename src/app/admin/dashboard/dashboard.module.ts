@@ -6,13 +6,8 @@ import { MatTreeModule } from '@angular/material/tree';
 import { DashboardComponent } from './dashboard.component';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { AdministratorComponent } from './administrator/administrator.component';
-import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
-import { MatDialogModule } from '@angular/material/dialog';
 import { MatGridListModule } from '@angular/material/grid-list';
-import { MatInputModule } from '@angular/material/input';
-import { MatSelectModule } from '@angular/material/select';
 import { MainComponent } from './main/main.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { StudentComponent } from './student/student.component';
@@ -20,6 +15,12 @@ import { GradeComponent } from './grade/grade.component';
 import { SchoolComponent } from './school/school.component';
 import { LessonComponent } from './lesson/lesson.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatInputModule } from '@angular/material/input';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatTableModule } from '@angular/material/table';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -37,17 +38,18 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     DashboardRoutingModule,
     FormsModule,
     MatTreeModule,
-    MatTableModule,
     MatIconModule,
-    MatButtonModule,
-    MatDialogModule,
     MatGridListModule,
-    MatInputModule,
     FormsModule,
     MatSidenavModule,
-    MatSelectModule,
     ReactiveFormsModule,
     MatDatepickerModule,
+    MatButtonModule,
+    MatDialogModule,
+    MatInputModule,
+    MatTabsModule,
+    MatTableModule,
+    MatSelectModule,
   ],
 })
 export class DashboardModule {}

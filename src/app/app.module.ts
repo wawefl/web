@@ -6,8 +6,6 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { MatTableModule } from '@angular/material/table';
-import { MatButtonModule } from '@angular/material/button';
 import { AuthInterceptor } from './admin/auth/auth.interceptor';
 
 @NgModule({
@@ -18,8 +16,6 @@ import { AuthInterceptor } from './admin/auth/auth.interceptor';
     BrowserAnimationsModule,
     RouterModule,
     HttpClientModule,
-    MatTableModule,
-    MatButtonModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

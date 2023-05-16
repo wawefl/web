@@ -53,7 +53,7 @@ export class AuthService {
 
   async logout() {
     this.http
-      .post<any>(`${this.backendUrl}/api/auth/logout`, null)
+      .post<any>(`${this.backendUrl}/admin/auth/logout`, null)
       .pipe(take(1))
       .subscribe({
         next: async () => {

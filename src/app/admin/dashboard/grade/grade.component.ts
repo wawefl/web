@@ -7,8 +7,8 @@ import {
 } from '@angular/core';
 import { GradeService } from 'src/app/services/grade.service';
 import { MatSort, Sort } from '@angular/material/sort';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
+import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
