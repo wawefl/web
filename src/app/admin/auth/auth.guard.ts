@@ -50,6 +50,7 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
   async checkLogin(url: string): Promise<true | UrlTree> {
     console.log('salut');
     if (await this.authService.isLoggedIn()) {
+      console.log(true);
       return true;
     }
 

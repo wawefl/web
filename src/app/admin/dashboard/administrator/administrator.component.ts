@@ -26,6 +26,7 @@ export class AdministratorComponent implements OnInit, AfterViewInit {
   formAdministrator!: CreateAdministratorDto;
 
   @ViewChild('viewFormAdministrator') viewFormAdministrator!: TemplateRef<any>;
+  @ViewChild(MatSort) sort!: MatSort;
 
   constructor(
     private administratorService: AdministratorService,
@@ -40,8 +41,6 @@ export class AdministratorComponent implements OnInit, AfterViewInit {
       this.dataSource = new MatTableDataSource(this.administrators);
     });
   }
-
-  @ViewChild(MatSort) sort!: MatSort;
 
   ngAfterViewInit() {
     if (this.administrators.length > 0) this.dataSource.sort = this.sort;
@@ -72,12 +71,6 @@ export class AdministratorComponent implements OnInit, AfterViewInit {
       height: '400px',
       width: '600px',
     });
-    // dialogRef.beforeClosed().subscribe((result) => {
-    //   // Note: If the user clicks outside the dialog or presses the escape key, there'll be no result
-    //   if (result !== undefined) {
-    //     console.log(result);
-    //   }
-    // });
   }
 
   modifyAdministrator(administrator: any) {

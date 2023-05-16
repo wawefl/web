@@ -7,7 +7,8 @@ import { LoginComponent } from './login/login.component';
 const routes: Routes = [
   {
     path: '',
-    canLoad: [AuthGuard],
+    canActivate: [AuthGuard],
+    canActivateChild: [AuthGuard],
     loadChildren: () =>
       import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
   },

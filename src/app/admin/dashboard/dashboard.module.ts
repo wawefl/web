@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MenuComponent } from './menu/menu.component';
 import { MatTreeModule } from '@angular/material/tree';
 import { DashboardComponent } from './dashboard.component';
@@ -12,6 +12,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 import { MainComponent } from './main/main.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { StudentComponent } from './student/student.component';
@@ -43,6 +44,8 @@ import { LessonComponent } from './lesson/lesson.component';
     MatInputModule,
     FormsModule,
     MatSidenavModule,
+    MatSelectModule,
+    ReactiveFormsModule,
   ],
 })
 export class DashboardModule {}

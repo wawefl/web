@@ -5,16 +5,19 @@ import { MainComponent } from './main/main.component';
 import { DashboardComponent } from './dashboard.component';
 import { AuthGuard } from '../auth/auth.guard';
 import { SchoolComponent } from './school/school.component';
+import { GradeComponent } from './grade/grade.component';
+import { StudentComponent } from './student/student.component';
 
 const routes: Routes = [
   {
     path: '',
     component: DashboardComponent,
-    canActivateChild: [AuthGuard],
     children: [
       { path: '', component: MainComponent },
       { path: 'administrator', component: AdministratorComponent },
       { path: 'school', component: SchoolComponent },
+      { path: 'grade', component: GradeComponent },
+      { path: 'student', component: StudentComponent },
     ],
   },
 ];

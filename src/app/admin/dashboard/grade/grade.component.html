@@ -1,1 +1,128 @@
-<p>grade works!</p>
+<div
+  *ngIf="grades !== null && grades.length > 0; then visible; else hidden"
+></div>
+
+<ng-template #visible>
+  <table
+    mat-table
+    [dataSource]="dataSource"
+    matSort
+    (matSortChange)="announceSortChange($event)"
+    class="mat-elevation-z8"
+  >
+    <ng-container matColumnDef="id">
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        mat-sort-header
+        sortActionDescription="Sort by id"
+      >
+        No.
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        mat-sort-header
+        sortActionDescription="Sort by name"
+      >
+        Name
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="email">
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        mat-sort-header
+        sortActionDescription="Sort by email"
+      >
+        Email
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.email }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="level">
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        mat-sort-header
+        sortActionDescription="Sort by level"
+      >
+        Level
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.level }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="modify">
+      <th mat-header-cell *matHeaderCellDef>
+        <mat-icon>edit</mat-icon>
+      </th>
+      <td mat-cell *matCellDef="let element">
+        <mat-icon class="cursor-pointer" (click)="modifyGrade(element)"
+          >edit</mat-icon
+        >
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+</ng-template>
+
+<ng-template #hidden>
+  <div>
+    <tr>
+      No results found.
+    </tr>
+  </div>
+</ng-template>
+
+<div class="div-button-add">
+  <button
+    mat-fab
+    color="primary"
+    aria-label="Example icon button with a delete icon"
+    (click)="addGrade()"
+  >
+    <mat-icon>add</mat-icon>
+  </button>
+</div>
+
+<ng-template #viewFormGrade>
+  <div>
+    <span *ngIf="formGrade.id; else createGrade"
+      >Edit de l'admin : {{ formGrade.id }}</span
+    >
+    <ng-template #createGrade><span>Create admin</span></ng-template>
+  </div>
+  <div class="grid grid-cols-2">
+    <mat-form-field class="example-full-width">
+      <mat-label>Name</mat-label>
+      <input matInput placeholder="Ex. Pizza" [(ngModel)]="formGrade.name" />
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Email</mat-label>
+      <input matInput placeholder="Ex. Pizza" [(ngModel)]="formGrade.email" />
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Level</mat-label>
+      <input
+        matInput
+        placeholder="Ex. Pizza"
+        [(ngModel)]="formGrade.level"
+        type="number"
+      />
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" (click)="createOrUpdateGrade()">
+      Create
+    </button>
+  </div>
+</ng-template>
