@@ -19,6 +19,7 @@ import { StudentComponent } from './student/student.component';
 import { GradeComponent } from './grade/grade.component';
 import { SchoolComponent } from './school/school.component';
 import { LessonComponent } from './lesson/lesson.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { LessonComponent } from './lesson/lesson.component';
     MatSidenavModule,
     MatSelectModule,
     ReactiveFormsModule,
+    MatDatepickerModule,
   ],
 })
 export class DashboardModule {}

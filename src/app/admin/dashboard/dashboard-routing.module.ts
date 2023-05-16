@@ -7,6 +7,7 @@ import { AuthGuard } from '../auth/auth.guard';
 import { SchoolComponent } from './school/school.component';
 import { GradeComponent } from './grade/grade.component';
 import { StudentComponent } from './student/student.component';
+import { LessonComponent } from './lesson/lesson.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,7 @@ const routes: Routes = [
       { path: 'school', component: SchoolComponent },
       { path: 'grade', component: GradeComponent },
       { path: 'student', component: StudentComponent },
+      { path: 'lessons', component: LessonComponent },
     ],
   },
 ];

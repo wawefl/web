@@ -1,3 +1,21 @@
+@use "@ng-matero/extensions" as mtx;
 @use "@angular/material" as mat;
+// @use "@angular/material/prebuilt-themes" as theme;
+
+// $my-primary: mat.define-palette(mat.$indigo-palette, 500);
+// $my-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+
+// $my-theme: mat.define-light-theme(
+//   (
+//     color: (
+//       primary: $my-primary,
+//       accent: $my-accent,
+//     ),
+//     density: 0,
+//   )
+// );
+
+// @include mtx.all-component-themes(mat.$deep-purple-palette);
+// @include mtx.all-experimental-component-themes($theme);
 
 @include mat.core();
