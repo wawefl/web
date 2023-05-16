@@ -21,6 +21,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTableModule } from '@angular/material/table';
 import { MatSelectModule } from '@angular/material/select';
+import { MtxDatetimepickerModule } from '@ng-matero/extensions/datetimepicker';
+import { MtxNativeDatetimeModule } from '@ng-matero/extensions/core';
 
 @NgModule({
   declarations: [
@@ -50,6 +52,8 @@ import { MatSelectModule } from '@angular/material/select';
     MatTabsModule,
     MatTableModule,
     MatSelectModule,
+    MtxDatetimepickerModule,
+    MtxNativeDatetimeModule,
   ],
 })
 export class DashboardModule {}
