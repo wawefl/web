@@ -1,25 +1,167 @@
-<p>lesson works!</p>
-<mat-form-field>
-  <mat-label>time</mat-label>
-  <mtx-datetimepicker
-    #datetimePicker
-    [type]="'datetime'"
-    [mode]="'auto'"
-    [multiYearSelector]="false"
-    [startView]="'month'"
-    [twelvehour]="false"
-    [timeInterval]="1"
-    [touchUi]="true"
-    [timeInput]="true"
-  ></mtx-datetimepicker>
-  <input
-    [mtxDatetimepicker]="datetimePicker"
-    [(ngModel)]="datetime"
-    matInput
-    required
-  />
-  <mtx-datetimepicker-toggle
-    [for]="datetimePicker"
-    matSuffix
-  ></mtx-datetimepicker-toggle>
-</mat-form-field>
+<div
+  *ngIf="lessons !== null && lessons.length > 0; then visible; else hidden"
+></div>
+
+<ng-template #visible>
+  <table
+    mat-table
+    [dataSource]="dataSource"
+    matSort
+    (matSortChange)="announceSortChange($event)"
+    class="mat-elevation-z8"
+  >
+    <ng-container matColumnDef="name">
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        mat-sort-header
+        sortActionDescription="Sort by name"
+      >
+        Name
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="dateStart">
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        mat-sort-header
+        sortActionDescription="Sort by date start"
+      >
+        Date Start
+      </th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.dateStart | date : "d/M/yy - H:mm" : undefined : "fr-FR" }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="dateEnd">
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        mat-sort-header
+        sortActionDescription="Sort by date end"
+      >
+        Date End
+      </th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.dateEnd | date : "d/M/yy - H:mm" : undefined : "fr-FR" }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="grade">
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        mat-sort-header
+        sortActionDescription="Sort by grade"
+      >
+        Grade
+      </th>
+      <td mat-cell *matCellDef="let element">
+        <div *ngFor="let gradeDisplay of grades">
+          <div *ngIf="element.gradeId === gradeDisplay.id">
+            {{ gradeDisplay.name }} ({{ gradeDisplay.level }})
+          </div>
+        </div>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="modify">
+      <th mat-header-cell *matHeaderCellDef>
+        <mat-icon>edit</mat-icon>
+      </th>
+      <td mat-cell *matCellDef="let element">
+        <mat-icon class="cursor-pointer" (click)="modifyLesson(element)"
+          >edit</mat-icon
+        >
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+</ng-template>
+
+<ng-template #hidden>
+  <div>
+    <tr>
+      No results found.
+    </tr>
+  </div>
+</ng-template>
+
+<div class="div-button-add">
+  <button
+    mat-fab
+    color="primary"
+    aria-label="Example icon button with a delete icon"
+    (click)="addLesson()"
+  >
+    <mat-icon>add</mat-icon>
+  </button>
+</div>
+
+<ng-template #viewFormLesson>
+  <div>
+    <span *ngIf="formLesson.id; else createAdmin"
+      >Edit de l'admin : {{ formLesson.id }}</span
+    >
+    <ng-template #createAdmin><span>Create admin</span></ng-template>
+  </div>
+  <div class="grid grid-cols-2">
+    <mat-form-field class="example-full-width">
+      <mat-label>Name</mat-label>
+      <input matInput placeholder="Ex. Pizza" [(ngModel)]="formLesson.name" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>time</mat-label>
+      <mtx-datetimepicker
+        #datetimePicker
+        [type]="'datetime'"
+        [mode]="'auto'"
+        [multiYearSelector]="false"
+        [startView]="'month'"
+        [twelvehour]="false"
+        [timeInterval]="1"
+        [touchUi]="true"
+        [timeInput]="true"
+      ></mtx-datetimepicker>
+      <input
+        [mtxDatetimepicker]="datetimePicker"
+        [(ngModel)]="formLesson.dateStart"
+        matInput
+        required
+      />
+      <mtx-datetimepicker-toggle
+        [for]="datetimePicker"
+        matSuffix
+      ></mtx-datetimepicker-toggle>
+    </mat-form-field>
+
+    <div>
+      <select [(ngModel)]="formLesson.dateEnd">
+        <option *ngFor="let time of times" [value]="time.code">
+          {{ time.name }}
+        </option>
+      </select>
+    </div>
+
+    <mat-form-field>
+      <mat-label>Select</mat-label>
+      <mat-select [(ngModel)]="formLesson.grade">
+        <div *ngFor="let grade of grades">
+          <mat-option value="{{ grade.id }}"
+            >{{ grade.name }} ({{ grade.level }})</mat-option
+          >
+        </div>
+      </mat-select>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" (click)="createOrUpdateStudent()">
+      Create
+    </button>
+  </div>
+</ng-template>
