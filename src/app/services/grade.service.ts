@@ -15,18 +15,18 @@ export class GradeService {
   }
 
   getAll(): Observable<any> {
-    return this.http.get<any>(`${this.backendUrl}/admin/grade`);
+    return this.http.get<any>(`${this.backendUrl}/commun/grade`);
   }
 
   get(id: number): Observable<any> {
-    return this.http.get<any>(`${this.backendUrl}/admin/grade/${id}`);
+    return this.http.get<any>(`${this.backendUrl}/commun/grade/${id}`);
   }
 
   create(school: any): Observable<any> {
-    return this.http.post<any>(`${this.backendUrl}/admin/grade`, school);
+    return this.http.post<any>(`${this.backendUrl}/commun/grade`, school);
   }
 
   update(school: any): Observable<any> {
-    return this.http.put<any>(`${this.backendUrl}/admin/grade`, school);
+    return this.http.put<any>(`${this.backendUrl}/commun/grade`, school);
   }
 }
