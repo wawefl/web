@@ -1,6 +1,8 @@
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { ToastrModule } from 'ngx-toastr';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -19,6 +21,7 @@ registerLocaleData(localeFr);
     BrowserAnimationsModule,
     RouterModule,
     HttpClientModule,
+    ToastrModule.forRoot({ positionClass: 'toast-bottom-right' }),
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

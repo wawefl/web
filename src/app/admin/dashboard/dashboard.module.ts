@@ -23,6 +23,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSelectModule } from '@angular/material/select';
 import { MtxDatetimepickerModule } from '@ng-matero/extensions/datetimepicker';
 import { MtxNativeDatetimeModule } from '@ng-matero/extensions/core';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { MtxNativeDatetimeModule } from '@ng-matero/extensions/core';
     MatTabsModule,
     MatTableModule,
     MatSelectModule,
+    MatSortModule,
     MtxDatetimepickerModule,
     MtxNativeDatetimeModule,
   ],

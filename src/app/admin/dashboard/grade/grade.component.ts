@@ -1,10 +1,4 @@
-import {
-  Component,
-  OnInit,
-  ViewChild,
-  AfterViewInit,
-  TemplateRef,
-} from '@angular/core';
+import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import { GradeService } from 'src/app/services/grade.service';
 import { MatSort, Sort } from '@angular/material/sort';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
@@ -16,7 +10,7 @@ import { MatTableDataSource } from '@angular/material/table';
   templateUrl: './grade.component.html',
   styleUrls: ['./grade.component.scss'],
 })
-export class GradeComponent implements OnInit, AfterViewInit {
+export class GradeComponent implements OnInit {
   displayedColumns: string[] = ['id', 'name', 'email', 'level', 'modify'];
   grades: any = [];
   dataSource: any;
@@ -36,12 +30,9 @@ export class GradeComponent implements OnInit, AfterViewInit {
     this.gradeService.getAll().subscribe((grades) => {
       this.grades = grades;
       this.dataSource = new MatTableDataSource(this.grades);
-      console.log(this.grades);
-    });
-  }
 
-  ngAfterViewInit() {
-    if (this.grades.length > 0) this.dataSource.sort = this.sort;
+      if (this.grades.length > 0) this.dataSource.sort = this.sort;
+    });
   }
 
   /** Announce the change in sort state for assistive technology. */
@@ -87,12 +78,23 @@ export class GradeComponent implements OnInit, AfterViewInit {
     if (!this.formGrade.id) {
       this.gradeService.create(this.formGrade).subscribe((grade) => {
         console.log(grade);
+        this.updateDataSource();
       });
     } else {
       this.gradeService.update(this.formGrade).subscribe((grade) => {
         console.log(grade);
+        this.updateDataSource();
       });
     }
     this.dialog.closeAll();
+  }
+
+  updateDataSource(): void {
+    this.gradeService.getAll().subscribe((grades) => {
+      this.grades = grades;
+      this.dataSource = new MatTableDataSource(this.grades);
+
+      this.dataSource.sort = this.sort;
+    });
   }
 }

@@ -18,7 +18,7 @@ import { LessonService } from 'src/app/services/lesson.service';
   templateUrl: './lesson.component.html',
   styleUrls: ['./lesson.component.scss'],
 })
-export class LessonComponent implements OnInit, AfterViewInit {
+export class LessonComponent implements OnInit {
   displayedColumns: string[] = [
     'name',
     'dateStart',
@@ -77,13 +77,10 @@ export class LessonComponent implements OnInit, AfterViewInit {
     });
     this.lessonService.getAll().subscribe((lessons) => {
       this.lessons = lessons;
-      console.log(this.lessons);
       this.dataSource = new MatTableDataSource(this.lessons);
-    });
-  }
 
-  ngAfterViewInit() {
-    if (this.lessons.length > 0) this.dataSource.sort = this.sort;
+      if (this.lessons.length > 0) this.dataSource.sort = this.sort;
+    });
   }
 
   /** Announce the change in sort state for assistive technology. */
@@ -119,38 +116,46 @@ export class LessonComponent implements OnInit, AfterViewInit {
     this.formLesson = {
       id: lesson.id,
       name: lesson.name,
-      dateStart: lesson.dateStart,
-      dateEnd: moment.duration(start.diff(end)).asMinutes(),
+      dateStart: new Date(lesson.dateStart),
+      dateEnd: moment.duration(end.diff(start)).asMinutes(),
       grade: lesson.gradeId,
     };
+
     let dialogRef = this.dialog.open(this.viewFormLesson, {
       height: '400px',
       width: '600px',
     });
   }
 
-  createOrUpdateStudent() {
-    console.log(this.formLesson);
+  createOrUpdateLesson() {
+    this.formLesson = {
+      ...this.formLesson,
+      dateEnd: moment(this.formLesson.dateStart).add(
+        this.formLesson.dateEnd,
+        'm'
+      ),
+    };
+
     if (!this.formLesson.id) {
-      this.formLesson = {
-        ...this.formLesson,
-        dateEnd: moment(this.formLesson.dateStart).add(
-          this.formLesson.dateEnd,
-          'm'
-        ),
-      };
-      this.lessonService.create(this.formLesson).subscribe((student) => {
-        console.log(student);
+      this.lessonService.create(this.formLesson).subscribe((lesson) => {
+        console.log(lesson);
+        this.updateDataSource();
       });
     } else {
-      this.formLesson = {
-        ...this.formLesson,
-        dateEnd: null,
-      };
-      this.lessonService.update(this.formLesson).subscribe((student) => {
-        console.log(student);
+      this.lessonService.update(this.formLesson).subscribe((lesson) => {
+        console.log(lesson);
+        this.updateDataSource();
       });
     }
     this.dialog.closeAll();
+  }
+
+  updateDataSource(): void {
+    this.lessonService.getAll().subscribe((lessons) => {
+      this.lessons = lessons;
+      this.dataSource = new MatTableDataSource(this.lessons);
+
+      this.dataSource.sort = this.sort;
+    });
   }
 }

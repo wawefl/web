@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -11,13 +12,17 @@ export class LoginComponent implements OnInit {
   email: string = '';
   password: string = '';
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private toastrService: ToastrService
+  ) {}
 
   async ngOnInit(): Promise<void> {
     const isLoggedIn = await this.authService.isLoggedIn();
     console.log(isLoggedIn);
     if (isLoggedIn) {
-      this.router.navigateByUrl('');
+      this.router.navigateByUrl('/admin/administrator');
     }
   }
 
@@ -29,9 +34,9 @@ export class LoginComponent implements OnInit {
     this.authService.login(form).then((res: any) => {
       console.log(res);
       if (res === true) {
-        this.router.navigate([`../`]);
+        this.router.navigate([`../admin/administrator`]);
       } else {
-        // this.notifier.notify('error', 'Error');
+        this.toastrService.error('Email or password are wrong', 'Login failed');
       }
     });
   }

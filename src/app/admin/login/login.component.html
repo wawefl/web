@@ -1,21 +1,22 @@
 <div class="login">
   <div class="div-form">
-    <input
-      type="text"
-      id="email"
-      name="email"
-      [(ngModel)]="email"
-      placeholder="Your email.."
-    />
+    <img src="/assets/logo/logo_black.png" width="150" />
 
-    <input
-      type="password"
-      id="password"
-      name="password"
-      [(ngModel)]="password"
-      placeholder="Your password.."
-    />
+    <mat-form-field class="input-login">
+      <mat-label>Email</mat-label>
+      <input matInput placeholder="Your email..." [(ngModel)]="email" />
+    </mat-form-field>
 
-    <input type="submit" value="Submit" (click)="login()" />
+    <mat-form-field class="input-login">
+      <mat-label>Password</mat-label>
+      <input
+        matInput
+        placeholder="Your password..."
+        [(ngModel)]="password"
+        type="password"
+      />
+    </mat-form-field>
+
+    <button (click)="login()" mat-raised-button>Submit</button>
   </div>
 </div>

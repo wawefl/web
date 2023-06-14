@@ -1,29 +1,47 @@
 <div id="menu">
   <img
     routerLink="/admin"
-    src="https://placeholder.com/280x80"
+    src="../../../../assets/logo/logo_black_horizontal.png"
     class="img cursor-pointer"
   />
 
   <div class="mt-4">
     <div>
-      <a routerLink="/admin/school">School</a>
+      <a routerLink="/admin/school" class="link" routerLinkActive="active-link"
+        >School</a
+      >
     </div>
     <div>
-      <a routerLink="/admin/administrator">Administrator</a>
+      <a
+        routerLink="/admin/administrator"
+        class="link"
+        routerLinkActive="active-link"
+        >Administrator</a
+      >
     </div>
     <div>
-      <a routerLink="/admin/student">Students</a>
+      <a routerLink="/admin/student" class="link" routerLinkActive="active-link"
+        >Students</a
+      >
     </div>
     <div>
-      <a routerLink="/admin/grade">Grade</a>
+      <a routerLink="/admin/grade" class="link" routerLinkActive="active-link"
+        >Grade</a
+      >
     </div>
     <div>
-      <a routerLink="/admin/lessons">Lesson</a>
+      <a routerLink="/admin/lessons" class="link" routerLinkActive="active-link"
+        >Lesson</a
+      >
     </div>
 
     <div class="bottom">
-      <div (click)="logout()" class="cursor-pointer">Lougout</div>
+      <div
+        (click)="logout()"
+        class="flex justify-end cursor-pointer div-logout"
+      >
+        <img src="../../../../assets/logout.png" class="img-logout" />
+      </div>
     </div>
   </div>
 </div>

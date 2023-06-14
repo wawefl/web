@@ -1,15 +1,8 @@
-import {
-  AfterViewInit,
-  Component,
-  OnInit,
-  TemplateRef,
-  ViewChild,
-} from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { AdministratorService } from 'src/app/services/administrator.service';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
-import { MatSort, Sort } from '@angular/material/sort';
+import { MatSort } from '@angular/material/sort';
 import { CreateAdministratorDto } from 'src/app/dto/administrator.dto';
-import { ParseSourceFile } from '@angular/compiler';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 
@@ -18,7 +11,7 @@ import { MatTableDataSource } from '@angular/material/table';
   templateUrl: './administrator.component.html',
   styleUrls: ['./administrator.component.scss'],
 })
-export class AdministratorComponent implements OnInit, AfterViewInit {
+export class AdministratorComponent implements OnInit {
   displayedColumns: string[] = ['id', 'name', 'email', 'role', 'modify'];
   administrators: any = [];
   dataSource: any;
@@ -36,14 +29,10 @@ export class AdministratorComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.administratorService.getAll().subscribe((data: any) => {
-      console.log(data);
       this.administrators = data;
       this.dataSource = new MatTableDataSource(this.administrators);
+      if (this.administrators.length > 0) this.dataSource.sort = this.sort;
     });
-  }
-
-  ngAfterViewInit() {
-    if (this.administrators.length > 0) this.dataSource.sort = this.sort;
   }
 
   /** Announce the change in sort state for assistive technology. */
@@ -98,6 +87,7 @@ export class AdministratorComponent implements OnInit, AfterViewInit {
       this.administratorService
         .create(this.formAdministrator)
         .subscribe((admin) => {
+          this.updateDataSource();
           console.log(admin);
         });
     } else {
@@ -108,9 +98,19 @@ export class AdministratorComponent implements OnInit, AfterViewInit {
       this.administratorService
         .update(this.formAdministrator)
         .subscribe((admin) => {
+          this.updateDataSource();
           console.log(admin);
         });
     }
     this.dialog.closeAll();
+  }
+
+  updateDataSource(): void {
+    this.administratorService.getAll().subscribe((admins) => {
+      this.administrators = admins;
+      this.dataSource = new MatTableDataSource(this.administrators);
+
+      this.dataSource.sort = this.sort;
+    });
   }
 }

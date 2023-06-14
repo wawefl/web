@@ -57,7 +57,8 @@ export class AuthService {
       .pipe(take(1))
       .subscribe({
         next: async () => {
-          this.router.navigateByUrl('login');
+          console.log(this);
+          this.router.navigateByUrl('admin/login');
         },
         error: (error) => console.log(error),
       });

@@ -8,7 +8,7 @@
 
     <div>Social Network</div>
     <div *ngFor="let social of formSchool.socialNetworks">
-      <div class="flex">
+      <div class="flex gap-4">
         <mat-form-field class="example-full-width">
           <mat-label>Name Social Network</mat-label>
           <input matInput placeholder="Ex. Twitter" [(ngModel)]="social.name" />
@@ -30,13 +30,13 @@
       </button>
     </div>
 
-    <div>
+    <div class="mt-4">
       <button
         mat-raised-button
         color="primary"
         (click)="createOrUpdateSchool()"
       >
-        {{ formSchool.id !== null ? "Upgrade" : "Create" }}
+        {{ formSchool.id !== null ? "Update" : "Create" }}
       </button>
     </div>
   </div>

@@ -17,7 +17,7 @@ import { StudentService } from 'src/app/services/student.service';
   templateUrl: './student.component.html',
   styleUrls: ['./student.component.scss'],
 })
-export class StudentComponent implements OnInit, AfterViewInit {
+export class StudentComponent implements OnInit {
   displayedColumns: string[] = ['id', 'name', 'email', 'grade', 'modify'];
   students: any = [];
   dataSource: any;
@@ -46,11 +46,8 @@ export class StudentComponent implements OnInit, AfterViewInit {
       console.log(students);
       this.students = students;
       this.dataSource = new MatTableDataSource(this.students);
+      if (this.students.length > 0) this.dataSource.sort = this.sort;
     });
-  }
-
-  ngAfterViewInit() {
-    if (this.students.length > 0) this.dataSource.sort = this.sort;
   }
 
   /** Announce the change in sort state for assistive technology. */
@@ -98,7 +95,6 @@ export class StudentComponent implements OnInit, AfterViewInit {
   }
 
   createOrUpdateStudent() {
-    console.log(this.formStudent);
     if (!this.formStudent.id) {
       this.formStudent = {
         ...this.formStudent,
@@ -106,6 +102,7 @@ export class StudentComponent implements OnInit, AfterViewInit {
       };
       this.studentService.create(this.formStudent).subscribe((student) => {
         console.log(student);
+        this.updateDataSource();
       });
     } else {
       this.formStudent = {
@@ -114,8 +111,17 @@ export class StudentComponent implements OnInit, AfterViewInit {
       };
       this.studentService.update(this.formStudent).subscribe((student) => {
         console.log(student);
+        this.updateDataSource();
       });
     }
     this.dialog.closeAll();
+  }
+
+  updateDataSource(): void {
+    this.studentService.getAll().subscribe((students) => {
+      this.students = students;
+      this.dataSource = new MatTableDataSource(this.students);
+      this.dataSource.sort = this.sort;
+    });
   }
 }
