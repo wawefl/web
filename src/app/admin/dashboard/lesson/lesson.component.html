@@ -109,10 +109,10 @@
 <ng-template #viewFormLesson>
   <div class="p-4">
     <div>
-      <span *ngIf="formLesson.id; else createAdmin"
-        >Edit lesson : {{ formLesson.id }}</span
+      <span *ngIf="formLesson.id; else create"
+        >Edit lesson: {{ formLesson.id }}</span
       >
-      <ng-template #createAdmin><span>Create admin</span></ng-template>
+      <ng-template #create><span>Create lesson</span></ng-template>
     </div>
     <div class="grid grid-cols-2 gap-4">
       <mat-form-field class="example-full-width">

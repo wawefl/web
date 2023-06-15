@@ -91,10 +91,10 @@
 <ng-template #viewFormGrade>
   <div class="p-4">
     <div>
-      <span *ngIf="formGrade.id; else createGrade"
-        >Edit de l'admin : {{ formGrade.id }}</span
+      <span *ngIf="formGrade.id; else create"
+        >Edit grade: {{ formGrade.id }}</span
       >
-      <ng-template #createGrade><span>Create admin</span></ng-template>
+      <ng-template #create><span>Create grade</span></ng-template>
     </div>
     <div class="grid grid-cols-2 gap-4">
       <mat-form-field class="example-full-width">

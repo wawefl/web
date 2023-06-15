@@ -2,6 +2,10 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.7.
 
+## Description
+
+End of year project (Webtech n4). Works with backend (default:8700), frontend (default:4350) and mobile app
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4350/`. The application will automatically reload if you change any of the source files.
