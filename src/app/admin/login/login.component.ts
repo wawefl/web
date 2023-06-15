@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
     const isLoggedIn = await this.authService.isLoggedIn();
 
     if (isLoggedIn) {
-      this.router.navigateByUrl('/admin/administrator');
+      this.router.navigateByUrl('/admin/student');
     }
   }
 
@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
     };
     this.authService.login(form).then((res: any) => {
       if (res === true) {
-        this.router.navigate([`../admin/administrator`]);
+        this.router.navigate([`../admin/student`]);
       } else {
         this.toastrService.error('Email or password are wrong', 'Login failed');
       }

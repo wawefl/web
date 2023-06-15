@@ -46,7 +46,7 @@ export class LessonComponent implements OnInit {
     },
     {
       code: 60,
-      name: '60min',
+      name: '1h',
     },
     {
       code: 90,
@@ -55,6 +55,14 @@ export class LessonComponent implements OnInit {
     {
       code: 120,
       name: '2h',
+    },
+    {
+      code: 180,
+      name: '3h',
+    },
+    {
+      code: 240,
+      name: '4h',
     },
   ];
 
