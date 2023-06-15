@@ -74,15 +74,12 @@ export class GradeComponent implements OnInit {
   }
 
   createOrUpdateGrade() {
-    console.log(this.formGrade);
     if (!this.formGrade.id) {
       this.gradeService.create(this.formGrade).subscribe((grade) => {
-        console.log(grade);
         this.updateDataSource();
       });
     } else {
       this.gradeService.update(this.formGrade).subscribe((grade) => {
-        console.log(grade);
         this.updateDataSource();
       });
     }

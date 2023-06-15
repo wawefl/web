@@ -39,11 +39,9 @@ export class StudentComponent implements OnInit {
   ngOnInit(): void {
     this.gradeService.getAll().subscribe((grades) => {
       this.grades = grades;
-      console.log(this.grades);
     });
 
     this.studentService.getAll().subscribe((students) => {
-      console.log(students);
       this.students = students;
       this.dataSource = new MatTableDataSource(this.students);
       if (this.students.length > 0) this.dataSource.sort = this.sort;
@@ -101,7 +99,6 @@ export class StudentComponent implements OnInit {
         name: `${this.formStudent.firstName} ${this.formStudent.lastName}`,
       };
       this.studentService.create(this.formStudent).subscribe((student) => {
-        console.log(student);
         this.updateDataSource();
       });
     } else {
@@ -110,7 +107,6 @@ export class StudentComponent implements OnInit {
         name: `${this.formStudent.firstName} ${this.formStudent.lastName}`,
       };
       this.studentService.update(this.formStudent).subscribe((student) => {
-        console.log(student);
         this.updateDataSource();
       });
     }

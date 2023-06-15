@@ -78,7 +78,6 @@ export class AdministratorComponent implements OnInit {
   }
 
   createOrUpdateAdministrator() {
-    console.log(this.formAdministrator);
     if (!this.formAdministrator.id) {
       this.formAdministrator = {
         ...this.formAdministrator,
@@ -88,7 +87,6 @@ export class AdministratorComponent implements OnInit {
         .create(this.formAdministrator)
         .subscribe((admin) => {
           this.updateDataSource();
-          console.log(admin);
         });
     } else {
       this.formAdministrator = {
@@ -99,7 +97,6 @@ export class AdministratorComponent implements OnInit {
         .update(this.formAdministrator)
         .subscribe((admin) => {
           this.updateDataSource();
-          console.log(admin);
         });
     }
     this.dialog.closeAll();

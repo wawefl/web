@@ -21,7 +21,6 @@ export class AuthService {
         .post<any>(`${this.backendUrl}/admin/auth/login`, form)
         .subscribe({
           next: (res) => {
-            console.log(res);
             if (res.admin !== undefined) {
               this.currentUser = res.user;
               localStorage.setItem('access_token', res.token);
@@ -40,7 +39,6 @@ export class AuthService {
     return new Promise((resolve) =>
       this.http.get<any>(`${this.backendUrl}/admin/auth/user`).subscribe({
         next: async (user: any) => {
-          console.log(user);
           this.currentUser = user;
           resolve(!!user);
         },
@@ -57,7 +55,6 @@ export class AuthService {
       .pipe(take(1))
       .subscribe({
         next: async () => {
-          console.log(this);
           this.router.navigateByUrl('admin/login');
         },
         error: (error) => console.log(error),

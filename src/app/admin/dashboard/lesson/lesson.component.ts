@@ -138,12 +138,10 @@ export class LessonComponent implements OnInit {
 
     if (!this.formLesson.id) {
       this.lessonService.create(this.formLesson).subscribe((lesson) => {
-        console.log(lesson);
         this.updateDataSource();
       });
     } else {
       this.lessonService.update(this.formLesson).subscribe((lesson) => {
-        console.log(lesson);
         this.updateDataSource();
       });
     }

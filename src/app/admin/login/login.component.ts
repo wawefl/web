@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     const isLoggedIn = await this.authService.isLoggedIn();
-    console.log(isLoggedIn);
+
     if (isLoggedIn) {
       this.router.navigateByUrl('/admin/administrator');
     }
@@ -32,7 +32,6 @@ export class LoginComponent implements OnInit {
       password: this.password,
     };
     this.authService.login(form).then((res: any) => {
-      console.log(res);
       if (res === true) {
         this.router.navigate([`../admin/administrator`]);
       } else {

@@ -99,19 +99,27 @@
     <div class="grid grid-cols-2 gap-4">
       <mat-form-field class="example-full-width">
         <mat-label>Name</mat-label>
-        <input matInput placeholder="Ex. Pizza" [(ngModel)]="formGrade.name" />
+        <input
+          matInput
+          placeholder="Ex. Webtech"
+          [(ngModel)]="formGrade.name"
+        />
       </mat-form-field>
 
       <mat-form-field class="example-full-width">
         <mat-label>Email</mat-label>
-        <input matInput placeholder="Ex. Pizza" [(ngModel)]="formGrade.email" />
+        <input
+          matInput
+          placeholder="Ex. webtech@gmail.com"
+          [(ngModel)]="formGrade.email"
+        />
       </mat-form-field>
 
       <mat-form-field class="example-full-width">
         <mat-label>Level</mat-label>
         <input
           matInput
-          placeholder="Ex. Pizza"
+          placeholder="Ex. 4"
           [(ngModel)]="formGrade.level"
           type="number"
         />

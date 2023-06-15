@@ -22,7 +22,6 @@ export class SchoolComponent implements OnInit {
     this.schoolService.get(1).subscribe(
       (school) => {
         if (school !== null) {
-          console.log(school);
           this.formSchool.id = school.id;
           this.formSchool.name = school.name;
           this.formSchool.socialNetworks = school.socialNetworks;
@@ -36,18 +35,13 @@ export class SchoolComponent implements OnInit {
   }
 
   createOrUpdateSchool() {
-    console.log(this.formSchool);
     if (!this.formSchool.id) {
       this.schoolService.create(this.formSchool).subscribe((school) => {
-        console.log('Create School');
         this.formSchool = school;
-        console.log(this.formSchool);
       });
     } else {
       this.schoolService.update(this.formSchool).subscribe((school) => {
-        console.log('Update School');
         this.formSchool = school;
-        console.log(this.formSchool);
       });
     }
   }
